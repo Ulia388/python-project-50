@@ -1,8 +1,8 @@
 install:
 	uv sunc
 
-gendiff -h:
-	uv run gendiff -h
+gendiff:
+	uv run gendiff first_file.json second_file.json
 
 build:
 	uv build
