@@ -1,8 +1,8 @@
 install:
 	uv sunc
 
-gendiff:
-	uv run gendiff
+gendiff -h:
+	uv run gendiff -h
 
 build:
 	uv build

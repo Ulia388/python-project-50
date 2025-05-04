@@ -4,8 +4,14 @@ import argparse
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Gendiff: Show difference between two files.')
-    # Добавьте сюда описание других аргументов, если нужно
+    parser = argparse.ArgumentParser(
+        description='Compares two configuration files and shows a difference.',
+        usage='gendiff [-h] [-f FORMAT] first_file second_file'
+    )
+    parser.add_argument('first_file', help='Path to the first file')
+    parser.add_argument('second_file', help='Path to the second file')
+    parser.add_argument('-f', '--format', help='set format of output')
+    
     args = parser.parse_args()
     # Ваша основная логика здесь
 
