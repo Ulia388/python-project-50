@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
+
+def read_json(filepath):
+    with open(filepath, 'r') as file:
+        return json.load(file)
 
 
 def main():
@@ -14,6 +19,17 @@ def main():
     
     args = parser.parse_args()
     # Ваша основная логика здесь
+    data1 = read_json(args.first_file)
+    data2 = read_json(args.second_file)
+    print("Data from first_file.json:")
+    print(data1)
 
-if __name__ == '__main__':
+    print("\nData from second_file.json:")
+    print(data2)
+
+
+if __name__ == "__main__":
     main()
+
+
+
