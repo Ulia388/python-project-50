@@ -24,3 +24,6 @@ test-coverage:
 
 check: 
 	test lint
+
+
+.PHONY: install lint build test
