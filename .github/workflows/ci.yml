@@ -38,6 +38,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=your_project_key
-            -Dsonar.organization=your_organization
+            -Dsonar.projectKey=Ulia388_python-project-50
+            -Dsonar.organization=Ulia388
             -Dsonar.python.coverage.reportPaths=coverage.xml
