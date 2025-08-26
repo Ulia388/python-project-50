@@ -1,8 +1,9 @@
-from gendiff.generate_diff import generate_diff
-import unittest
-import tempfile
-import os
 import json
+import os
+import tempfile
+import unittest
+
+from gendiff.generate_diff import generate_diff
 
 
 class TestGenerateDiff(unittest.TestCase):
@@ -88,7 +89,6 @@ class TestGenerateDiff(unittest.TestCase):
             self.normalize_output(result),
             self.normalize_output(expected)
         )
-
 
     if __name__ == '__main__':
         unittest.main()
