@@ -12,7 +12,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '>=3.11'
       - name: Install dependencies
         run: |
           pip install uv
@@ -30,8 +30,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=lyovaparsyan94_python-project-50
-            -Dsonar.organization=lyovaparsyan94
+            -Dsonar.projectKey=Ulia388_python-project-50
+            -Dsonar.organization=Ulia388
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.exclusions=tests/**
             -Dsonar.exclusions=tests/**
