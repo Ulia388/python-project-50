@@ -1,21 +1,42 @@
-#!/usr/bin/env python3
-
-import argparse
-
-from gendiff.generate_diff import generate_diff
+import json
 
 
-def main():
+def generate_diff(file_path1, file_path2):
+  
+    with open(file_path1) as f1, open(file_path2) as f2:
+        data1 = json.load(f1)
+        data2 = json.load(f2)
 
-    parser = argparse.ArgumentParser(
-        description='Compares two configuration files and shows a difference.'
-    )
-    parser.add_argument('file_path1', help='Path to the first file')
-    parser.add_argument('file_path2', help='Path to the second file')
-    args = parser.parse_args()
-    diff = generate_diff(args.file_path1, args.file_path2)
-    print(diff)
+    all_keys = sorted(set(data1.keys()) | set(data2.keys()))
+
+    lines = ['{']
+
+    for key in all_keys:
+        val1 = data1.get(key)
+        val2 = data2.get(key)
+
+        if key in data1 and key not in data2:
+            
+            lines.append(f"  - {key}: {format_value(val1)}")
+        elif key not in data1 and key in data2:
+            
+            lines.append(f"  + {key}: {format_value(val2)}")
+        else:
+            
+            if val1 == val2:
+                
+                lines.append(f"    {key}: {format_value(val1)}")
+            else:
+                
+                lines.append(f"  - {key}: {format_value(val1)}")
+                lines.append(f"  + {key}: {format_value(val2)}")
+
+    lines.append('}')
+    return '\n'.join(lines)
 
 
-if __name__ == "__main__":
-    main()
+def format_value(value):
+    
+    if isinstance(value, bool):
+        return 'true' if value else 'false'
+    return value if isinstance(value, (int, float)) else str(value)
