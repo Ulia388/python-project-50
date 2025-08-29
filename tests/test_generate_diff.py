@@ -3,7 +3,7 @@ import os
 import tempfile
 import unittest
 
-from gendiff.generate_diff import generate_diff
+from gendiff.scripts.generate_diff import generate_diff
 
 
 class TestGenerateDiff(unittest.TestCase):

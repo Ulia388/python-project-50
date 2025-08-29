@@ -1,5 +1,5 @@
 install:
-	uv sunc
+	uv sync
 
 gendiff:
 	uv run gendiff 
