@@ -1,0 +1,18 @@
+authors:
+  Ivan Katkov:
+    age: 37
+    speciality: IT
+    skill: High
+    publications:
+        publication1
+        publication2
+  Fedor Pupkin:
+    age: 32
+    speciality: IT
+    skill: High 
+    publications:
+        publication1
+        publication2
+        publication3
+        publication4
+  
