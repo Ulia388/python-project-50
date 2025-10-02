@@ -1,11 +1,11 @@
 import json
+import yaml
 
 
 def generate_diff(file_path1, file_path2):
   
-    with open(file_path1) as f1, open(file_path2) as f2:
-        data1 = json.load(f1)
-        data2 = json.load(f2)
+    data1 = load_file(file_path1)
+    data2 = load_file(file_path2)
 
     all_keys = sorted(set(data1.keys()) | set(data2.keys()))
 
@@ -34,6 +34,16 @@ def generate_diff(file_path1, file_path2):
     lines.append('}')
     return '\n'.join(lines)
 
+
+def load_file(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        if path.endswith('.json'):
+            return json.load(f)
+        elif path.endswith(('.yml', '.yaml')):
+            return yaml.safe_load(f)
+        else:
+            raise ValueError(f'Unsupported file format: {path}')
+            
 
 def format_value(value):
     

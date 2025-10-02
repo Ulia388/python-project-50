@@ -1,29 +1,8 @@
 {
-    authors: {
-        Ivan Katkov: {
-            - age: 35
-            + age: 37
-              speciality: IT
-              skill: High
-              publications: {
-                  publication1
-                  publication2
-                - publication3
-              }
-
-        }
-        Fedor Pupkin: {
-            - age: 30
-            + age: 32
-              speciality: IT
-            - skill: Normal
-            + skill: High
-              publications: {
-                  publication1
-                  publication2
-                  publication3
-                + publication4
-              }
-        }
-    }
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
 }
