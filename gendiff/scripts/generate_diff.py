@@ -1,40 +1,49 @@
 import json
 import yaml
 
-def load_file(file_path):
-    with open(file_path, encoding='utf-8') as f:
-        if file_path.endswith(('.yml', '.yaml')):
-            return yaml.safe_load(f)
-        return json.load(f)
 
-def generate_diff(file_path1, file_path2, format_name='stylish'):
-    
+def generate_diff(file_path1, file_path2):
+  
     data1 = load_file(file_path1)
     data2 = load_file(file_path2)
 
-    def build_diff(dict1, dict2):
-        keys = sorted(dict1.keys() | dict2.keys())
-        diff = []
+    all_keys = sorted(set(data1.keys()) | set(data2.keys()))
 
-        for key in keys:
-            if key not in dict1:
-                diff.append(f"  + {key}: {dict2[key]}")
-            elif key not in dict2:
-                diff.append(f"  - {key}: {dict1[key]}")
-            elif isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-                nested = build_diff(dict1[key], dict2[key])
-                diff.append(f"    {key}: {{\n{nested}\n    }}")
-            elif dict1[key] != dict2[key]:
-                diff.append(f"  - {key}: {dict1[key]}")
-                diff.append(f"  + {key}: {dict2[key]}")
+    lines = ['{']
+
+    for key in all_keys:
+        val1 = data1.get(key)
+        val2 = data2.get(key)
+
+        if key in data1 and key not in data2:
+            
+            lines.append(f"  - {key}: {format_value(val1)}")
+        elif key not in data1 and key in data2:
+            
+            lines.append(f"  + {key}: {format_value(val2)}")
+        else:
+            
+            if val1 == val2:
+                
+                lines.append(f"    {key}: {format_value(val1)}")
             else:
-                diff.append(f"    {key}: {dict1[key]}")
-        return '\n'.join(diff)
+                
+                lines.append(f"  - {key}: {format_value(val1)}")
+                lines.append(f"  + {key}: {format_value(val2)}")
 
-    diff_result = build_diff(data1, data2)
-    
-    return '{\n' + diff_result + '\n}'
+    lines.append('}')
+    return '\n'.join(lines)
 
+
+def load_file(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        if path.endswith('.json'):
+            return json.load(f)
+        elif path.endswith(('.yml', '.yaml')):
+            return yaml.safe_load(f)
+        else:
+            raise ValueError(f'Unsupported file format: {path}')
+            
 
 def format_value(value):
     
