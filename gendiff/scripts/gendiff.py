@@ -1,10 +1,18 @@
 import argparse
+import os
+import yaml
 import json
 
 
-def read_json(filepath):
+def read_file(filepath):
+    ext = os.path.splitext(filepath)[1].lower()
     with open(filepath, 'r') as file:
-        return json.load(file)
+        if ext in ['.yml', '.yaml']:
+            return yaml.safe_load(file)
+        elif ext == '.json':
+            return json.load(file)
+        else:
+            raise ValueError(f"Unsupported file format: {ext}")
 
 
 def gendiff():
@@ -18,8 +26,8 @@ def gendiff():
     
     args = parser.parse_args()
     
-    data1 = read_json(args.first_file)
-    data2 = read_json(args.second_file)
+    data1 = read_file(args.first_file)
+    data2 = read_file(args.second_file)
     print("Data from first_file.json:")
     print(json.dumps(data1, indent=2))
 

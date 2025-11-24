@@ -4,8 +4,8 @@ from gendiff.scripts.generate_diff import generate_diff
 
 
 @pytest.mark.parametrize('file_path1, file_path2, expected', [
-    ('tests/test_data/first_file.json',
-     'tests/test_data/second_file.json',
+    ('tests/test_data/file1.json',
+     'tests/test_data/file2.json',
      'tests/test_data/expected.json.txt'),
     ('tests/test_data/file1.yaml',
      'tests/test_data/file2.yaml',
