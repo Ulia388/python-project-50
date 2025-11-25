@@ -3,7 +3,7 @@ import json
 import yaml
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, formatter='stylish'):
   
     data1 = load_file(file_path1)
     data2 = load_file(file_path2)

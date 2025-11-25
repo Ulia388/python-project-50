@@ -17,7 +17,7 @@ packages = ["gendiff"]
 
 [project.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
-generate_diff = "gendiff.scripts.generate_diff:main"
+
 
 [tool.uv]
 dev-dependencies = [

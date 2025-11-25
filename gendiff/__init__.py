@@ -1,7 +1,7 @@
-from gendiff.scripts.gendiff import gendiff
+from gendiff.scripts.gendiff import main
 from gendiff.scripts.generate_diff import generate_diff
 
 __all__ = [
-    'gendiff',
+    'main',
     'generate_diff'
 ]
