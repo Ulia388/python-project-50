@@ -1,0 +1,10 @@
+import gendiff.formatters.plain import plain_formatter 
+import gendiff.formatters.stylish import format_stylish
+
+
+def formatters_diff(diff, formatter):
+    if formatter == 'plain':
+        return plain_formatter(diff)
+
+    return format_stylish(diff)
+    

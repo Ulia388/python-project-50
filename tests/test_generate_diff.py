@@ -16,3 +16,18 @@ def test_generate_diff(file_path1, file_path2, expected):
     with open(expected, encoding='utf-8') as f:
         expected_content = f.read().strip()
     assert diff.strip() == expected_content
+
+
+@pytest.mark.parametrize('file_path1, file_path2, expected', [
+    ('tests/test_data/file1.json',
+     'tests/test_data/file2.json',
+     'tests/test_data/expected.plain.txt'),
+    ('tests/test_data/file1.yaml',
+     'tests/test_data/file2.yaml',
+     'tests/test_data/expected.plain.txt')
+])
+def test_generate_diff_plain(file_path1, file_path2, expected):
+    diff = generate_diff(file_path1, file_path2, formatter='plain')
+    with open(expected, encoding='utf-8') as f:
+        expected_content = f.read().strip()
+    assert diff.strip() == expected_content
