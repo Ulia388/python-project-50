@@ -11,10 +11,10 @@ def format_value(value):
         return str(value)
         
 
-def plain(tree):
+def plain(data):
     lines = []
 
-    for node in tree:
+    for node in data:
         key = node['key']
         type_ = node['type']
         value = node.get('value')
