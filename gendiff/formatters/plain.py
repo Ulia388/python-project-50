@@ -11,7 +11,7 @@ def format_value(value):
         return str(value)
         
 
-def plain_formatter(tree):
+def plain(tree):
     lines = []
 
     for node in tree:
@@ -30,8 +30,13 @@ def plain_formatter(tree):
             new = format_value(value['new'])
             lines.append(f"Key '{key}' was updated. From {old} to {new}")
         elif type_ == 'nested':
-            
-            pass
-        # Параметры 'unchanged' не отображаются
+            nested_str = plain(node['children'])
+            lines.append(
+                f"Key '{key}' contains nested structure:\n{nested_str}"
+            )
 
     return "\n".join(lines)
+
+
+def format_plain(data):
+    return plain(data)
