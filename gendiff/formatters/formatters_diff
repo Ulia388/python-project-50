@@ -1,5 +1,6 @@
-import gendiff.formatters.plain import format_plain 
-import gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.plain import format_plain 
+from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.json_format import format_json
 
 
 def formatters_diff(diff, formatter):
@@ -7,6 +8,8 @@ def formatters_diff(diff, formatter):
         return format_stylish(diff)
     if formatter == 'plain':
         return format_plain(diff)
+    if formatter == 'json':
+        return format_json(diff)
     else:
         raise ValueError(f"Unsupported formatter: {formatter}")
     
