@@ -4,7 +4,7 @@ def format_value(value):
     elif value is None:
         return 'null'
     elif isinstance(value, bool):
-        return str(value).lower()
+        return 'true' if value else 'false'
     elif isinstance(value, str):
         return f"'{value}'"
     else:
