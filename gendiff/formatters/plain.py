@@ -11,29 +11,29 @@ def format_value(value):
         return str(value)
         
 
-def plain(data):
+def plain(data, parent=''):
     lines = []
 
     for node in data:
         key = node['key']
         type_ = node['type']
         value = node.get('value')
+        children = node.get('children', [])
+        full_key = f'{parent}.{key}' if parent else key
 
         if type_ == 'added':
             lines.append(
-                f"Key '{key}' was added with value: {format_value(value)}"
+                f"Property '{full_key}' was added with value: {format_value(value)}"
             )
         elif type_ == 'removed':
-            lines.append(f"Key '{key}' was removed")
+            lines.append(f"Property '{full_key}' was removed")
         elif type_ == 'changed':
             old = format_value(value['old'])
             new = format_value(value['new'])
-            lines.append(f"Key '{key}' was updated. From {old} to {new}")
+            lines.append(f"Property '{full_key}' was updated. From {old} to {new}")
         elif type_ == 'nested':
-            nested_str = plain(node['children'])
-            lines.append(
-                f"Key '{key}' contains nested structure:\n{nested_str}"
-            )
+            nested_str = plain(children, parent=full_key)
+            lines.append(nested_str)
 
     return "\n".join(lines)
 
