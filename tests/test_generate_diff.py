@@ -41,8 +41,6 @@ def test_generate_diff_plain(file_path1, file_path2, expected):
      'tests/test_data/file2.yaml',
      'tests/test_data/expected.format_json.txt')
 ])
-
-
 def test_generate_diff_json(file_path1, file_path2, expected):
     diff = generate_diff(file_path1, file_path2, formatter='json')
     with open(expected, encoding='utf-8') as f:

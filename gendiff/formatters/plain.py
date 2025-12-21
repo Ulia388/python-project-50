@@ -22,15 +22,18 @@ def plain(data, parent=''):
         full_key = f'{parent}.{key}' if parent else key
 
         if type_ == 'added':
+            value = format_value(value)
             lines.append(
-                f"Property '{full_key}' was added with value: {format_value(value)}"
+                f"Property '{full_key}' was added with value: {value}"
             )
         elif type_ == 'removed':
             lines.append(f"Property '{full_key}' was removed")
         elif type_ == 'changed':
             old = format_value(value['old'])
             new = format_value(value['new'])
-            lines.append(f"Property '{full_key}' was updated. From {old} to {new}")
+            lines.append(
+                f"Property '{full_key}' was updated. From {old} to {new}"
+            )
         elif type_ == 'nested':
             nested_str = plain(children, parent=full_key)
             lines.append(nested_str)
