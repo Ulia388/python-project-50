@@ -31,7 +31,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=Ulia388_python-project-50
-            -Dsonar.organization=Ulia388
+            -Dsonar.organization=ulia388
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.exclusions=tests/**
             -Dsonar.exclusions=tests/**
